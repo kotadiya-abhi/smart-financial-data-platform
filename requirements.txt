@@ -1,0 +1,14 @@
+# Phase 1 - ingestion, validation, ETL basics
+pandas
+python-dotenv
+psycopg2-binary
+Faker
+
+# Phase 3 - Big Data (added when we get there)
+# pyspark
+
+# Phase 5 - Machine Learning (added when we get there)
+# scikit-learn
+
+# Testing
+pytest

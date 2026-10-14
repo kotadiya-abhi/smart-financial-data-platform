@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Data (synthetic data generated locally, not committed)
+data/raw/*.csv
+data/processed/*.csv
+data/processed/*.parquet
+data/rejected/*.csv
+
+# Logs
+logs/*.log
+logs/*.txt
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Power BI
+dashboards/*.pbix
+
+# Environment / secrets
+.env
+*.env
+
+# OS / editor
+.DS_Store
+.vscode/
+*.swp
