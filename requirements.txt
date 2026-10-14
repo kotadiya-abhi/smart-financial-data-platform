@@ -4,8 +4,9 @@ python-dotenv
 psycopg2-binary
 Faker
 
-# Phase 3 - Big Data (added when we get there)
-# pyspark
+# Phase 3 - Big Data
+pyspark
+pyarrow
 
 # Phase 5 - Machine Learning (added when we get there)
 # scikit-learn

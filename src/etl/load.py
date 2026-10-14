@@ -44,3 +44,28 @@ def load_transactions(conn, df: pd.DataFrame) -> int:
         )
     conn.commit()
     return len(rows)
+
+
+def load_daily_analytics(conn, df: pd.DataFrame) -> int:
+    """Upserts (not skip-on-conflict) because re-running Spark should
+    refresh the numbers if the underlying transactions changed."""
+    if df.empty:
+        return 0
+    columns = ["analytics_date", "region", "transaction_count", "total_incoming", "total_outgoing"]
+    rows = list(df[columns].itertuples(index=False, name=None))
+    with conn.cursor() as cur:
+        execute_values(
+            cur,
+            """
+            INSERT INTO daily_analytics
+                (analytics_date, region, transaction_count, total_incoming, total_outgoing)
+            VALUES %s
+            ON CONFLICT (analytics_date, region) DO UPDATE SET
+                transaction_count = EXCLUDED.transaction_count,
+                total_incoming = EXCLUDED.total_incoming,
+                total_outgoing = EXCLUDED.total_outgoing
+            """,
+            rows,
+        )
+    conn.commit()
+    return len(rows)
